@@ -1,0 +1,15 @@
+---
+import Layout2 from "@layouts/Layout2.astro";
+import axios from 'axios'
+
+const {slug} =  Astro.params
+const dataDetailPoke = await axios.get(`https://pokeapi.co/api/v2/pokemon/${slug}`)
+console.log(dataDetailPoke?.data);
+
+---
+
+<Layout2 title={"Poke " + slug?.toUpperCase()?.toString()}>
+    <!-- <h1>bisa pake navbar tertentu 😍</h1> -->
+    <h2>{slug}</h2>
+    <img src={dataDetailPoke?.data?.sprites?.front_default} />
+</Layout2>
